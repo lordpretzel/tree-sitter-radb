@@ -1,0 +1,13 @@
+{
+  "name": "tree-sitter-radb",
+  "version": "1.0.0",
+  "description": "Tree-sitter grammar for radb",
+  "scripts": {
+    "test": "tree-sitter test"
+  },
+  "keywords": [
+    "parsing"
+  ],
+  "author": "Boris Glavic",
+  "license": "GPL-3.0-or-later"
+}

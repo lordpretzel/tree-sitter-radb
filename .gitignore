@@ -1,0 +1,6 @@
+tree-sitter-__LANGUAGE_NAME__.wasm
+/node_modules/
+/binding.gyp
+/bindings/
+/Cargo.toml
+/src/
