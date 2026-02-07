@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "Tree-sitter grammar for radb",
   "scripts": {
-    "test": "tree-sitter test"
+      "test": "tree-sitter test",
+	  "run": "tree-sitter generate && tree-sitter build-wasm && tree-sitter playground",
+	  "build-grammar": "tree-sitter generate"
   },
   "keywords": [
     "parsing"
   ],
   "author": "Boris Glavic",
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.26.5"
+  }
 }
