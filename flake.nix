@@ -1,8 +1,8 @@
 {
-  description = "Tree-sitter grammar for ";
+  description = "Tree-sitter grammar for radb";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.10";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -15,8 +15,7 @@
           };
 
           packages = with pkgs; [
-            nodejs_25
-            PACKAGES
+            nodejs_24
             rich-cli
           ];
         in
@@ -36,4 +35,4 @@ $(npm list)" --print --padding 1 -p -a heavy
             };
           }
       );
-};
+}

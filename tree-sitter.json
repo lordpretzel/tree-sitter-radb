@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "radb",
+      "camelcase": "radb",
+      "title": "radb",
+      "scope": "source.radb",
+      "file-types": [
+        "ra"
+      ],
+      "injection-regex": "^radb$",
+      "class-name": "TreeSitterRadb"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Grammar for the radb relational algebra client",
+    "authors": [
+      {
+        "name": "Boris Glavic",
+        "email": "bglavic@uic.edu",
+        "url": ""
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/lordpretzel/tree-sitter-radb",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
