@@ -4,3 +4,5 @@ tree-sitter-__LANGUAGE_NAME__.wasm
 /bindings/
 /Cargo.toml
 /src/
+/.direnv/
+/tree-sitter-radb.wasm

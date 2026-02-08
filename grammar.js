@@ -1,12 +1,13 @@
 const PREC = {
+	logical: 0,
 	comparative: 1,
-	multiplicative: 4,
-	additive: 3,
 	concat: 2,
+	additive: 3,
+	multiplicative: 4,
 	function: 5,
 	case: 6,
-	join: 7,
-	setop: 8
+	join: 8,
+	setop: 9
 }
 
 module.exports = grammar({
@@ -136,6 +137,7 @@ module.exports = grammar({
 		binary_expr: $ => {
 			const table = [
 				[PREC.concat, '||'],
+				[PREC.logical, "and", "or"],
 				[PREC.comparative, choice('=', '!=', '<', '<=', '>', '>=')],
 				[PREC.additive, choice('+', '-')],
 				[PREC.multiplicative, choice('*', '/', '%')],
