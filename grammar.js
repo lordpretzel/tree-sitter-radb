@@ -177,7 +177,7 @@ module.exports = grammar({
 
 		_UNDERSCORE: $ => "_",
 		_OPENPAREN: $ => "(",
-		_CLOSEPAREN: $ => "(",
+		_CLOSEPAREN: $ => ")",
 		_OPENCURLY: $ => "{",
 		_CLOSECURLY: $ => "}",
 
@@ -196,8 +196,10 @@ module.exports = grammar({
 function makeUnaryOp(env, op, params) {
 	return seq(op,
 			   env._UNDERSCORE, env._OPENCURLY, params, env._CLOSECURLY,
-			   env._OPENPAREN, field("input", env._algebraop), env._CLOSEPAREN)
+			   env._OPENPAREN, field("input", env._algebraop), env._CLOSEPAREN
+			  )
 }
+
 
 function makeBinaryOp(env, op, params) {
 	if(params === undefined)
