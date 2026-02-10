@@ -1,0 +1,1664 @@
+[
+  {
+    "type": "NUMBER",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "FLOAT",
+          "named": true
+        },
+        {
+          "type": "INTEGER",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "agg_function",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "aggf",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "agg_function",
+          "named": true
+        },
+        {
+          "type": "attr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "aggregation",
+    "named": true,
+    "fields": {
+      "aggfuncs": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "aggrflist",
+            "named": true
+          }
+        ]
+      },
+      "groupby": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          }
+        ]
+      },
+      "input": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "AGGREGATION",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "aggrflist",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "aggf",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "IDENTIFIER",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_expr",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!=",
+            "named": false
+          },
+          {
+            "type": "%",
+            "named": false
+          },
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": ">=",
+            "named": false
+          },
+          {
+            "type": "and",
+            "named": false
+          },
+          {
+            "type": "||",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "clear",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "CLEAR",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "clearview",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "CLEAREXCL",
+            "named": true
+          }
+        ]
+      },
+      "viewname": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "IDENTIFIER",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "NUMBER",
+          "named": true
+        },
+        {
+          "type": "STRING",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "difference",
+    "named": true,
+    "fields": {
+      "leftinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      },
+      "rightinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "DIFFERENCE",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attr",
+          "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_call",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "agg_function",
+            "named": true
+          },
+          {
+            "type": "function_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_args",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "IDENTIFIER",
+          "named": true
+        },
+        {
+          "type": "agg_function",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "intersection",
+    "named": true,
+    "fields": {
+      "leftinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      },
+      "rightinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "INTERSECTION",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "join",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "leftinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      },
+      "rightinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "CROSS",
+          "named": true
+        },
+        {
+          "type": "JOIN",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "listschema",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "LIST",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "projection",
+    "named": true,
+    "fields": {
+      "exprs": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "input": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "PROJECT",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "aggregation",
+          "named": true
+        },
+        {
+          "type": "difference",
+          "named": true
+        },
+        {
+          "type": "intersection",
+          "named": true
+        },
+        {
+          "type": "join",
+          "named": true
+        },
+        {
+          "type": "projection",
+          "named": true
+        },
+        {
+          "type": "rename",
+          "named": true
+        },
+        {
+          "type": "selection",
+          "named": true
+        },
+        {
+          "type": "tableaccess",
+          "named": true
+        },
+        {
+          "type": "union",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quit",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "QUIT",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "rename",
+    "named": true,
+    "fields": {
+      "input": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      },
+      "newnames": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "RENAME",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "save",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "SAVE",
+            "named": true
+          }
+        ]
+      },
+      "viewname": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "IDENTIFIER",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "selection",
+    "named": true,
+    "fields": {
+      "condition": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "attr",
+            "named": true
+          },
+          {
+            "type": "binary_expr",
+            "named": true
+          },
+          {
+            "type": "constant",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          }
+        ]
+      },
+      "input": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "SELECT",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "SOURCE",
+            "named": true
+          }
+        ]
+      },
+      "filename": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "STRING",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "query",
+          "named": true
+        },
+        {
+          "type": "utility",
+          "named": true
+        },
+        {
+          "type": "view",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "sqlexec",
+    "named": true,
+    "fields": {
+      "command": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "SQLEXEC",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "SQLCODE",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tableaccess",
+    "named": true,
+    "fields": {
+      "tablename": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "IDENTIFIER",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "union",
+    "named": true,
+    "fields": {
+      "leftinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      },
+      "rightinput": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "aggregation",
+            "named": true
+          },
+          {
+            "type": "difference",
+            "named": true
+          },
+          {
+            "type": "intersection",
+            "named": true
+          },
+          {
+            "type": "join",
+            "named": true
+          },
+          {
+            "type": "projection",
+            "named": true
+          },
+          {
+            "type": "rename",
+            "named": true
+          },
+          {
+            "type": "selection",
+            "named": true
+          },
+          {
+            "type": "tableaccess",
+            "named": true
+          },
+          {
+            "type": "union",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "UNION",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "utility",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "clear",
+          "named": true
+        },
+        {
+          "type": "clearview",
+          "named": true
+        },
+        {
+          "type": "listschema",
+          "named": true
+        },
+        {
+          "type": "quit",
+          "named": true
+        },
+        {
+          "type": "save",
+          "named": true
+        },
+        {
+          "type": "source",
+          "named": true
+        },
+        {
+          "type": "sqlexec",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "view",
+    "named": true,
+    "fields": {
+      "viewname": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "IDENTIFIER",
+            "named": true
+          }
+        ]
+      },
+      "viewquery": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "query",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "DEFAS",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "AGGREGATION",
+    "named": true
+  },
+  {
+    "type": "CLEAR",
+    "named": true
+  },
+  {
+    "type": "CLEAREXCL",
+    "named": true
+  },
+  {
+    "type": "CROSS",
+    "named": true
+  },
+  {
+    "type": "DEFAS",
+    "named": true
+  },
+  {
+    "type": "DIFFERENCE",
+    "named": true
+  },
+  {
+    "type": "FLOAT",
+    "named": true
+  },
+  {
+    "type": "IDENTIFIER",
+    "named": true
+  },
+  {
+    "type": "INTEGER",
+    "named": true
+  },
+  {
+    "type": "INTERSECTION",
+    "named": true
+  },
+  {
+    "type": "JOIN",
+    "named": true
+  },
+  {
+    "type": "LIST",
+    "named": true
+  },
+  {
+    "type": "PROJECT",
+    "named": true
+  },
+  {
+    "type": "QUIT",
+    "named": true
+  },
+  {
+    "type": "RENAME",
+    "named": true
+  },
+  {
+    "type": "SAVE",
+    "named": true
+  },
+  {
+    "type": "SELECT",
+    "named": true
+  },
+  {
+    "type": "SOURCE",
+    "named": true
+  },
+  {
+    "type": "SQLCODE",
+    "named": true
+  },
+  {
+    "type": "SQLEXEC",
+    "named": true
+  },
+  {
+    "type": "STRING",
+    "named": true
+  },
+  {
+    "type": "UNION",
+    "named": true
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "avg",
+    "named": false
+  },
+  {
+    "type": "count",
+    "named": false
+  },
+  {
+    "type": "max",
+    "named": false
+  },
+  {
+    "type": "min",
+    "named": false
+  },
+  {
+    "type": "sum",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "||",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]

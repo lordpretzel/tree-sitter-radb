@@ -3,6 +3,5 @@ tree-sitter-__LANGUAGE_NAME__.wasm
 /binding.gyp
 /bindings/
 /Cargo.toml
-/src/
 /.direnv/
 /tree-sitter-radb.wasm
