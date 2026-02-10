@@ -20,12 +20,15 @@ module.exports = grammar({
 		_statement: $ => choice(
 			$.view,
 			$.query,
-			$.utility
+			$.utility,
+      $.comment
 		),
 
+    comment: $ => $.COMMENT,
+
 		view: $ => seq(field("viewname",$.IDENTIFIER),
-					   $.DEFAS,
-					   field("viewquery",$.query)),
+					         $.DEFAS,
+					         field("viewquery",$.query)),
 
 		query: $ => seq($._algebraop,$._SEMICOLON),
 
@@ -41,8 +44,8 @@ module.exports = grammar({
 		),
 
 		_parenop: $ => seq($._OPENPAREN,
-						   $._algebraop,
-						   $._CLOSEPAREN),
+						           $._algebraop,
+						           $._CLOSEPAREN),
 
 		utility: $ => choice(
 			$.listschema,
@@ -80,29 +83,29 @@ module.exports = grammar({
 		//                          Alegbra operators                          //
 		/////////////////////////////////////////////////////////////////////////
 		selection: $ => makeUnaryOp($, $.SELECT,
-									field("condition", $._expr)),
+									              field("condition", $._expr)),
 
 		projection: $ => makeUnaryOp($, $.PROJECT,
-									 field("exprs", $._exprlist)),
+									               field("exprs", $._exprlist)),
 
 		rename: $ => makeUnaryOp($, $.RENAME,
-								 field("newnames", $._attrlist)),
+								             field("newnames", $._attrlist)),
 
 		aggregation: $ => makeUnaryOp($, $.AGGREGATION,
-							  choice(field("aggfuncs", $.aggrflist),
-									 seq(field("aggfuncs", $.aggrflist),
-										 $._COLON,
-										 field("groupby", $._attrlist)))),
+							                    choice(field("aggfuncs", $.aggrflist),
+									                       seq(field("aggfuncs", $.aggrflist),
+										                         $._COLON,
+										                         field("groupby", $._attrlist)))),
 
 		tableaccess: $ => field("tablename", $.IDENTIFIER),
 
 		join: $ => prec.left(PREC.join,choice(makeBinaryOp($, $.JOIN),
-									makeBinaryOp($, $.CROSS),
-									makeBinaryOp($, $.JOIN,field("condition", $._expr)))),
+									                        makeBinaryOp($, $.CROSS),
+									                        makeBinaryOp($, $.JOIN,field("condition", $._expr)))),
 
 		_setop: $ => choice($.union,
-							$.difference,
-							$.intersection),
+							          $.difference,
+							          $.intersection),
 
 		union: $ => prec.left(PREC.setop,makeBinaryOp($, $.UNION)),
 		difference: $ => prec.left(PREC.setop,makeBinaryOp($, $.DIFFERENCE)),
@@ -214,7 +217,9 @@ module.exports = grammar({
 
 		STRING: $ => /[\'][^\']*[\']/,
     SQLCODE: $ => /[}]+/,
-	}
+
+    COMMENT: $ => /[\/\/].*/,
+   }
 });
 
 function makeOpParameter(env, params) {
@@ -233,15 +238,15 @@ function makeBinaryOp(env, op, params) {
 	if(params === undefined)
 	{
 		return seq(field("leftinput", env._algebraop),
-				   op,
-				   field("rightinput", env._algebraop));
+				       op,
+				       field("rightinput", env._algebraop));
 	}
 	else
 	{
 		return seq(field("leftinput", env._algebraop),
-				   op,
-				   makeOpParameter(env, params),
-				   field("rightinput", env._algebraop));
+				       op,
+				       makeOpParameter(env, params),
+				       field("rightinput", env._algebraop));
 	}
 }
 

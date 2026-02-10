@@ -23,8 +23,16 @@
         {
           "type": "SYMBOL",
           "name": "utility"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
         }
       ]
+    },
+    "comment": {
+      "type": "SYMBOL",
+      "name": "COMMENT"
     },
     "view": {
       "type": "SEQ",
@@ -1395,6 +1403,10 @@
     "SQLCODE": {
       "type": "PATTERN",
       "value": "[}]+"
+    },
+    "COMMENT": {
+      "type": "PATTERN",
+      "value": "[\\/\\/].*"
     }
   },
   "extras": [
