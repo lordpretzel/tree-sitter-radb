@@ -20,13 +20,12 @@ module.exports = grammar({
 		_statement: $ => choice(
 			$.view,
 			$.query,
-			$._utility
+			$.utility
 		),
 
-		view: $ => seq(field("viewname",$._IDENTIFIER),
+		view: $ => seq(field("viewname",$.IDENTIFIER),
 					   $.DEFAS,
-					   field("viewquery",$.query),
-					   $._SEMICOLON),
+					   field("viewquery",$.query)),
 
 		query: $ => seq($._algebraop,$._SEMICOLON),
 
@@ -45,16 +44,37 @@ module.exports = grammar({
 						   $._algebraop,
 						   $._CLOSEPAREN),
 
-		_utility: $ => choice(
+		utility: $ => choice(
 			$.listschema,
-			$.quit),
+			$.quit,
+      $.clear,
+      $.clearview,
+      $.save,
+      $.source,
+      $.sqlexec
+    ),
 
 		/////////////////////////////////////////////////////////////////////////
 		//                           utility commands                          //
 		/////////////////////////////////////////////////////////////////////////
-		listschema: $ => seq("\\list",$._SEMICOLON),
+		listschema: $ => makeUtility($, $.LIST),
+		quit: $ => makeUtility($, $.QUIT),
+    clear: $ => makeUtility($, $.CLEAR, $._ASTERIX),
+    clearview: $ => makeUtility($, $.CLEAREXCL,
+                                field("viewname",$.IDENTIFIER)),
+    save: $ => makeUtility($, $.SAVE,
+                           field("viewname",optional($.IDENTIFIER)),
+                           field("filename", $.STRING)),
+    source: $ => makeUtility($, $.SOURCE, field("filename", $.STRING)),
+    sqlexec: $ => makeUtility($, $.SQLEXEC, $.SQLCODE),
 
-		quit: $ => seq("\\quit",$._SEMICOLON),
+    LIST: $ => "\\list",
+    QUIT: $ => "\\quit",
+    CLEAR: $ => "\\clear",
+    CLEAREXCL: $ => "\\clear!",
+    SAVE: $ => "\\save",
+    SOURCE: $ => "\\source",
+    SQLEXEC: $ => "\\sqlexec",
 
 		/////////////////////////////////////////////////////////////////////////
 		//                          Alegbra operators                          //
@@ -74,7 +94,7 @@ module.exports = grammar({
 										 $._COLON,
 										 field("groupby", $._attrlist)))),
 
-		tableaccess: $ => field("tablename", $._IDENTIFIER),
+		tableaccess: $ => field("tablename", $.IDENTIFIER),
 
 		join: $ => prec.left(PREC.join,choice(makeBinaryOp($, $.JOIN),
 									makeBinaryOp($, $.CROSS),
@@ -99,7 +119,7 @@ module.exports = grammar({
 
 		_attrlist: $ => commaSep1($.attr),
 
-		attr: $ => $._IDENTIFIER,
+		attr: $ => $.IDENTIFIER,
 
 		_expr: $ => choice(
 			prec.left(PREC.function,$.function_call),
@@ -127,12 +147,12 @@ module.exports = grammar({
 
 		function_name: $ => choice(
 			prec(2,$.agg_function),
-			prec(1,$._IDENTIFIER)
+			prec(1,$.IDENTIFIER)
 		),
 
 		agg_function: $ => choice("sum","avg","count","min","max"),
 
-		predicate_name: $ => $._IDENTIFIER,
+		predicate_name: $ => $.IDENTIFIER,
 
 		binary_expr: $ => {
 			const table = [
@@ -175,13 +195,14 @@ module.exports = grammar({
 		/////////////////////////////////////////////////////////////////////////
 		//                             other tokens                            //
 		/////////////////////////////////////////////////////////////////////////
-		_IDENTIFIER: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
+		IDENTIFIER: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
 
 		_UNDERSCORE: $ => "_",
 		_OPENPAREN: $ => "(",
 		_CLOSEPAREN: $ => ")",
 		_OPENCURLY: $ => "{",
 		_CLOSECURLY: $ => "}",
+    _ASTERIX: $ => "*",
 
 		FLOAT: $ => /[-]?[0-9]+[.][0-9]+/,
 		DOT: $ => /[.]/,
@@ -192,14 +213,19 @@ module.exports = grammar({
 		),
 
 		STRING: $ => /[\'][^\']*[\']/,
+    SQLCODE: $ => /[}]+/,
 	}
 });
 
+function makeOpParameter(env, params) {
+  return seq(env._UNDERSCORE, env._OPENCURLY, params, env._CLOSECURLY)
+}
+
 function makeUnaryOp(env, op, params) {
 	return seq(op,
-			   env._UNDERSCORE, env._OPENCURLY, params, env._CLOSECURLY,
-			   env._OPENPAREN, field("input", env._algebraop), env._CLOSEPAREN
-			  )
+             makeOpParameter(env, params),
+			       env._OPENPAREN, field("input", env._algebraop), env._CLOSEPAREN
+			      );
 }
 
 
@@ -214,8 +240,21 @@ function makeBinaryOp(env, op, params) {
 	{
 		return seq(field("leftinput", env._algebraop),
 				   op,
-				   env._UNDERSCORE, env._OPENCURLY, params, env._CLOSECURLY,
+				   makeOpParameter(env, params),
 				   field("rightinput", env._algebraop));
+	}
+}
+
+function makeUtility(env, cmd, params) {
+	if(params === undefined)
+	{
+		return seq(field("command",cmd), env._SEMICOLON);
+	}
+	else
+	{
+		return seq(field("command",cmd),
+               params,
+               env._SEMICOLON);
 	}
 }
 
