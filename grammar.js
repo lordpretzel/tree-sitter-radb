@@ -128,7 +128,7 @@ module.exports = grammar({
 
 		_attrlist: $ => commaSep1($.attr),
 
-		attr: $ => $.IDENTIFIER,
+		attr: $ => separatedList($.IDENTIFIER,$.DOT),
 
 		_expr: $ => choice(
 			prec.left(PREC.function,$.function_call),
@@ -268,6 +268,11 @@ function makeUtility(env, cmd, params) {
                env._SEMICOLON);
 	}
 }
+
+function separatedList(rule,delim) {
+	return seq(rule, repeat(seq(delim, rule)))
+}
+
 
 function commaSep1(rule) {
 	return seq(rule, repeat(seq(',', rule)))

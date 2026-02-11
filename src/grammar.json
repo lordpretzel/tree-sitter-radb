@@ -945,8 +945,29 @@
       ]
     },
     "attr": {
-      "type": "SYMBOL",
-      "name": "IDENTIFIER"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "IDENTIFIER"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "DOT"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "IDENTIFIER"
+              }
+            ]
+          }
+        }
+      ]
     },
     "_expr": {
       "type": "CHOICE",

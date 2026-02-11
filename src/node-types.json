@@ -161,9 +161,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "DOT",
+          "named": true
+        },
         {
           "type": "IDENTIFIER",
           "named": true
@@ -1615,6 +1619,10 @@
   },
   {
     "type": "DIFFERENCE",
+    "named": true
+  },
+  {
+    "type": "DOT",
     "named": true
   },
   {
