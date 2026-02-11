@@ -43,6 +43,18 @@
         {
           "type": "attr",
           "named": true
+        },
+        {
+          "type": "binary_expr",
+          "named": true
+        },
+        {
+          "type": "constant",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
         }
       ]
     }

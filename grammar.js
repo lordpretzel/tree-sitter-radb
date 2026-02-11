@@ -122,7 +122,7 @@ module.exports = grammar({
 		/////////////////////////////////////////////////////////////////////////
 		aggrflist: $ => commaSep1($.aggf),
 
-		aggf: $ => seq($.agg_function, $._OPENPAREN, $.attr, $._CLOSEPAREN),
+		aggf: $ => seq($.agg_function, $._OPENPAREN, $._expr, $._CLOSEPAREN),
 
 		_exprlist: $ => commaSep1($._expr),
 
