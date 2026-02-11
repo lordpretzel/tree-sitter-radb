@@ -62,7 +62,7 @@ module.exports = grammar({
 		/////////////////////////////////////////////////////////////////////////
 		listschema: $ => makeUtility($, $.LIST),
 		quit: $ => makeUtility($, $.QUIT),
-    clear: $ => makeUtility($, $.CLEAR, $._ASTERIX),
+    clear: $ => makeUtility($, $.CLEAR, $.ASTERIX),
     clearview: $ => makeUtility($, $.CLEAREXCL,
                                 field("viewname",$.IDENTIFIER)),
     save: $ => makeUtility($, $.SAVE,
@@ -89,13 +89,19 @@ module.exports = grammar({
 									               field("exprs", $._exprlist)),
 
 		rename: $ => makeUnaryOp($, $.RENAME,
-								             field("newnames", $._attrlist)),
+                             choice(field("newattrnames", $._attrlist),
+                                    seq(field("newrelname", $.IDENTIFIER),
+                                        $.COLON,
+                                        field("newattrnames", $._attrlist)),
+                                    seq(field("newrelname", $.IDENTIFIER),
+                                        $.COLON,
+                                        $.ASTERIX))),
 
 		aggregation: $ => makeUnaryOp($, $.AGGREGATION,
 							                    choice(field("aggfuncs", $.aggrflist),
-									                       seq(field("aggfuncs", $.aggrflist),
-										                         $._COLON,
-										                         field("groupby", $._attrlist)))),
+									                       seq(field("groupby", $._attrlist),
+                                             $.COLON,
+                                             field("aggfuncs", $.aggrflist)))),
 
 		tableaccess: $ => field("tablename", $.IDENTIFIER),
 
@@ -183,7 +189,7 @@ module.exports = grammar({
 		//                               keywords                              //
 		/////////////////////////////////////////////////////////////////////////
 		_SEMICOLON: $ => ";",
-		_COLON: $ => ":",
+		COLON: $ => ":",
 		DEFAS: $ => ":-",
 		SELECT: $ => "\\select",
 		PROJECT: $ => "\\project",
@@ -205,7 +211,7 @@ module.exports = grammar({
 		_CLOSEPAREN: $ => ")",
 		_OPENCURLY: $ => "{",
 		_CLOSECURLY: $ => "}",
-    _ASTERIX: $ => "*",
+    ASTERIX: $ => "*",
 
 		FLOAT: $ => /[-]?[0-9]+[.][0-9]+/,
 		DOT: $ => /[.]/,

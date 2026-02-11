@@ -206,7 +206,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_ASTERIX"
+          "name": "ASTERIX"
         },
         {
           "type": "SYMBOL",
@@ -465,12 +465,63 @@
               "name": "_OPENCURLY"
             },
             {
-              "type": "FIELD",
-              "name": "newnames",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_attrlist"
-              }
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "newattrnames",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_attrlist"
+                  }
+                },
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "newrelname",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "IDENTIFIER"
+                      }
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "COLON"
+                    },
+                    {
+                      "type": "FIELD",
+                      "name": "newattrnames",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_attrlist"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "FIELD",
+                      "name": "newrelname",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "IDENTIFIER"
+                      }
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "COLON"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "ASTERIX"
+                    }
+                  ]
+                }
+              ]
             },
             {
               "type": "SYMBOL",
@@ -530,22 +581,22 @@
                   "members": [
                     {
                       "type": "FIELD",
-                      "name": "aggfuncs",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "aggrflist"
-                      }
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "_COLON"
-                    },
-                    {
-                      "type": "FIELD",
                       "name": "groupby",
                       "content": {
                         "type": "SYMBOL",
                         "name": "_attrlist"
+                      }
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "COLON"
+                    },
+                    {
+                      "type": "FIELD",
+                      "name": "aggfuncs",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "aggrflist"
                       }
                     }
                   ]
@@ -1295,7 +1346,7 @@
       "type": "STRING",
       "value": ";"
     },
-    "_COLON": {
+    "COLON": {
       "type": "STRING",
       "value": ":"
     },
@@ -1363,7 +1414,7 @@
       "type": "STRING",
       "value": "}"
     },
-    "_ASTERIX": {
+    "ASTERIX": {
       "type": "STRING",
       "value": "*"
     },

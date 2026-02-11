@@ -1,5 +1,10 @@
 [
   {
+    "type": "ASTERIX",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "NUMBER",
     "named": true,
     "fields": {},
@@ -122,11 +127,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "AGGREGATION",
+          "named": true
+        },
+        {
+          "type": "COLON",
           "named": true
         }
       ]
@@ -300,6 +309,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "ASTERIX",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1053,9 +1072,9 @@
           }
         ]
       },
-      "newnames": {
+      "newattrnames": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": ",",
@@ -1066,12 +1085,30 @@
             "named": true
           }
         ]
+      },
+      "newrelname": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "IDENTIFIER",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "ASTERIX",
+          "named": true
+        },
+        {
+          "type": "COLON",
+          "named": true
+        },
         {
           "type": "RENAME",
           "named": true
@@ -1525,10 +1562,6 @@
     "named": false
   },
   {
-    "type": ":",
-    "named": false
-  },
-  {
     "type": ";",
     "named": false
   },
@@ -1562,6 +1595,10 @@
   },
   {
     "type": "CLEAREXCL",
+    "named": true
+  },
+  {
+    "type": "COLON",
     "named": true
   },
   {
