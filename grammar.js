@@ -13,6 +13,13 @@ const PREC = {
 module.exports = grammar({
 	name: 'radb',
 
+  // tokens that can appear anywhere (whitespace and comments)
+  extras: $ => [
+    /\s|\\\r?\n/,
+    $.comment,
+  ],
+
+  // grammar rules
 	rules: {
 
 		source_file: $ => repeat($._statement),
@@ -20,8 +27,7 @@ module.exports = grammar({
 		_statement: $ => choice(
 			$.view,
 			$.query,
-			$.utility,
-      $.comment
+			$.utility
 		),
 
     comment: $ => $.COMMENT,
@@ -224,7 +230,14 @@ module.exports = grammar({
 		STRING: $ => /[\'][^\']*[\']/,
     SQLCODE: $ => /[}]+/,
 
-    COMMENT: $ => /[\/\/].*/,
+    COMMENT: _ => token(choice(
+      seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/',
+      ),
+    )),
    }
 });
 
